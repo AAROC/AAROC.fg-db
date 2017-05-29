@@ -1,0 +1,6 @@
+---
+# vars file for fg-db
+mysql_root_password_update: yes
+mysql_port: 3306
+fg_user: futuregateway
+fg_passauth: yes

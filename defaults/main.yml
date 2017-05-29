@@ -1,0 +1,30 @@
+---
+# defaults file for fg-db
+fg_user: gw_user
+# fg_db_host: "{{ inventory_hostname }}"
+fg_db_port: 3306
+fg_db_name: rad_db
+fg_db_user: db_user
+fg_db_schemaver: 0.0.10
+mysql_port: 3306
+
+db_prerequisites:
+  RedHat:
+    - mysql-server
+    - mysql
+    - openssl
+    - pwgen
+    - supervisor
+    - bash-completion
+    - psmisc
+    - net-tools
+    - perl
+  Debian:
+    - ca-certificates
+    - openssl
+    - pwgen
+    - perl
+
+python_mysql:
+  RedHat: MySQL-python
+  Debian: python-mysqldb

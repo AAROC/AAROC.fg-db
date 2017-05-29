@@ -1,0 +1,49 @@
+---
+- name: Pull in passwords
+  include_vars: passwords.yml
+- name: Ensure mysql prereqs present
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{db_prerequisites[ansible_os_family]}}"
+
+- name: ensure python db package
+  package:
+    name: "{{ python_mysql[ansible_os_family]}}"
+    state: present
+    update_cache: true
+
+- name: Ensure FG user present
+  mysql_user:
+    login_user: root
+    login_password: "{{ mysql_root_password}}"
+    login_host: fg_db
+    user: "{{ fg_user }}"
+    password: "{{ fg_pass }}"
+    state: present
+
+# Next statements have to be changed with lineinfile or replace
+- name: Template sql
+  template:
+    dest: "/tmp/fgapiserver_db.sql"
+    src: fgapiserver_db.sql.j2
+
+
+# FutureGateway database creation
+- name: DBinst0 | Database creation check
+  mysql_db:
+    name: "{{ fg_db_name }}"
+    state: present
+    login_port: "{{ mysql_port }}"
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+  register: db_present
+
+- name: DBinst1 | Database creation and installation
+  mysql_db:
+    name: fgapiserver
+    state: import
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    target: "/tmp/fgapiserver_db.sql"
+  when: db_present.changed

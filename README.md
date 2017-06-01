@@ -1,3 +1,5 @@
+[![Docker Repository on Quay](https://quay.io/repository/aaroc/fg_db/status?token=6970b0c0-8e27-4269-8f7b-4e26da487ece "Docker Repository on Quay")](https://quay.io/repository/aaroc/fg_db)
+
 # Role Name
 
 Adds a fg-db service to your [Ansible Container](https://github.com/ansible/ansible-container) project. Run the following commands

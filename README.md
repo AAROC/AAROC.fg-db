@@ -1,8 +1,8 @@
-[![Docker Repository on Quay](https://quay.io/repository/aaroc/fg_db/status?token=6970b0c0-8e27-4269-8f7b-4e26da487ece "Docker Repository on Quay")](https://quay.io/repository/aaroc/fg_db)
+[![Docker Repository on Quay](https://quay.io/repository/aaroc/fg_db/status?token=6970b0c0-8e27-4269-8f7b-4e26da487ece "Docker Repository on Quay")](https://quay.io/repository/aaroc/fg_db)  [![Build Status](https://travis-ci.org/AAROC/AAROC.fg-db.svg?branch=master)](https://travis-ci.org/AAROC/AAROC.fg-db)
 
-# Role Name
+# FutureGateway Data Persistence role (MySQL DB)
 
-Adds a fg-db service to your [Ansible Container](https://github.com/ansible/ansible-container) project. Run the following commands
+Adds a FutureGateway data persistence  service (MySQL database) to your [Ansible Container](https://github.com/ansible/ansible-container) project. Run the following commands
 to install the service:
 
 ```
@@ -33,12 +33,19 @@ $ ansible-container install AAROC.fg-db
 
 ## Role Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set
-via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Most variables are set in `default/main.yml` and `vars/main.yml` :
+
+  * `mysql_port`: Port on which MySQL database server is listening
+  * `fg_user`: username on the API server allowed to connect to the database.
+  * `fg_db_user`: usernmae in the DB granted access to the DB.
+  * `fg_db_name`: Name of the database in the DB server used by the API server to write events
+  * fg_db_schemaver: Version number of the database schema
+  * `db_prerequisites`: OS-dependent list of prerequisite system packages
+  * `python_mysql`: OS-dependent name of the mysql python interface package
 
 ## Dependencies
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+none
 
 ## License
 

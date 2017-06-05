@@ -6,7 +6,6 @@ mysql_port: 3306
 fg_db_name: rad_db
 fg_db_user: db_user
 fg_db_schemaver: 0.0.10
-mysql_port: 3306
 
 db_prerequisites:
   RedHat:
